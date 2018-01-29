@@ -11,11 +11,22 @@ let mix = require('laravel-mix')
  |
  */
 
+// browser syncr for reloading in dev watch
 mix.browserSync(process.env.APP_URL)
 
+// chunks compile path
 mix.webpackConfig({
   output: {
     chunkFilename: 'js/chunks/[name].js'
+  }
+})
+
+// aliases
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      'utils': path.resolve('./resources/assets/js/utils')
+    }
   }
 })
 
