@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +11,13 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.browserSync(process.env.APP_URL);
+mix.browserSync(process.env.APP_URL)
+
+mix.webpackConfig({
+  output: {
+    chunkFilename: 'js/chunks/[name].js'
+  }
+})
 
 mix.react('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+  .sass('resources/assets/sass/app.scss', 'public/css')

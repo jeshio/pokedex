@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-export default class Example extends Component {
+export default class App extends Component {
   render () {
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-8 col-md-offset-2">
             <div className="panel panel-default">
-              <div className="panel-heading">Example Component</div>
+              <div className="panel-heading">App Component</div>
 
               <div className="panel-body">
                 I'm an example component!
@@ -16,11 +16,12 @@ export default class Example extends Component {
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-md-8 col-md-offset-2">
+            {this.props.children}
+          </div>
+        </div>
       </div>
     )
   }
-}
-
-if (document.getElementById('app')) {
-  ReactDOM.render(<Example />, document.getElementById('app'))
 }

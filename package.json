@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "axios": "^0.17",
+        "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "babel-preset-react": "^6.23.0",
         "bootstrap-sass": "^3.3.7",
         "browser-sync": "^2.23.6",
@@ -22,13 +23,16 @@
         "eslint-plugin-node": "^5.2.1",
         "eslint-plugin-promise": "^3.6.0",
         "eslint-plugin-standard": "^3.0.1",
-        "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
         "react": "^15.4.2",
         "react-dom": "^15.4.2"
     },
     "dependencies": {
-        "react-router": "^4.2.0"
+        "react-loadable": "^5.3.1",
+        "react-redux": "^5.0.6",
+        "react-router": "^4.2.0",
+        "react-router-redux": "^5.0.0-alpha.9",
+        "redux": "^3.7.2"
     }
 }
