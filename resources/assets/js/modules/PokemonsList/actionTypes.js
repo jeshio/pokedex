@@ -5,5 +5,6 @@ export const loadingTypes = createTypes([
 ], 'POKEMON')
 
 export const paginatorTypes = createTypes([
-  'SET'
+  'SET',
+  'SET_SIZE'
 ], 'PAGE')

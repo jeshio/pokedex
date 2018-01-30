@@ -9,20 +9,55 @@ import './style.scss'
 import queryString from 'query-string'
 
 class PokemonsList extends Component {
+  componentDidMount() {
+    const query = queryString.parse(this.props.router.location.search)
+    if (query.size) {
+      this.props.actions.setPageSize(parseInt(query.size))
+    }
+  }
+
+  /**
+   * Build search query from state and arguments
+   * @param override
+   * @returns String search query
+   */
+  getSearchQuery(override = {}) {
+    const { pageSize, pageNumber } = this.props;
+    return queryString.stringify({
+      ...queryString.parse(this.props.router.location.search),
+      ...(pageSize !== 10 ? { size: pageSize } : {}),
+      ...(pageNumber > 1 ? { page: pageNumber } : {}),
+      ...override
+    })
+  }
+
   onChangePage(pageNumber) {
     this.props.actions.changePage(pageNumber)
     this.props.pushToRouter({
       pathname: '/',
-      search: pageNumber > 1 ? `?page=${pageNumber}` : ''
+      search: this.getSearchQuery({ page: pageNumber })
+    })
+  }
+
+  onChangePageSize(pageSize) {
+    this.props.actions.changePageSize(pageSize)
+    this.props.pushToRouter({
+      pathname: '/',
+      search: this.getSearchQuery({ size: pageSize })
     })
   }
 
   render () {
-    return <div className="Pokemons-list"><List {...this.props} onChangePage={pageNumber => this.onChangePage(pageNumber)} /></div>
+    return <div className="Pokemons-list">
+      <List {...this.props}
+        onChangePage={pageNumber => this.onChangePage(pageNumber)}
+        onChangePageSize={pageSize => this.onChangePageSize(pageSize)}
+      />
+    </div>
   }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps (state) {
   const pokemonState = state.get(NAME)
   const router = state.get('router')
 

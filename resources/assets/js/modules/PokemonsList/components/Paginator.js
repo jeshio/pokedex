@@ -11,6 +11,7 @@ const component = props =>
       containerClassName="Paginator"
       previousClassName="Paginator__previous"
       nextClassName="Paginator__next"
+      activeClassName="Paginator__active"
       previousLabel={MobileDetector.mobile() ? '<' : 'Previous'}
       nextLabel={MobileDetector.mobile() ? '>' : 'Next'}
       onPageChange={(r) => props.onChangePage(r.selected + 1)}

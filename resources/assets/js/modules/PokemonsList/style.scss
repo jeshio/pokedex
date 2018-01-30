@@ -74,6 +74,15 @@
     }
   }
 
+  .PageSizeSelecter {
+    @include col(3, 6);
+    @include colOff(9, 6);
+
+    &__title {
+      color: #555;
+    }
+  }
+
   .Paginator {
     text-align: center;
     padding: 10px 0;
@@ -85,8 +94,8 @@
       cursor: pointer;
     }
 
-    &__previous {
-
+    &__active {
+      border-bottom: 1px solid #aaa;
     }
   }
 }

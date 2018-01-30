@@ -22,6 +22,9 @@ export default (state = initialState, action) => {
     case paginatorTypes.SET:
       return state
         .set('pageNumber', action.payload.pageNumber)
+    case paginatorTypes.SET_SIZE:
+      return state
+        .set('pageSize', action.payload.pageSize)
     default:
       return state
   }
