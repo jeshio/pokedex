@@ -1,0 +1,21 @@
+@import "variables";
+
+h1, h2, h3, h4, h5, h6 {
+  .title {
+    color: $titles-color;
+  }
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($link-color, 15);
+  }
+}
+
+.loader {
+  text-align: center;
+  margin: 50px 0;
+}

@@ -1,23 +1,17 @@
 import React, { Component } from 'react'
+import Navbar from './components'
+import './style.scss'
 
 export default class App extends Component {
   render () {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 col-md-offset-2">
-            <div className="panel panel-default">
-              <div className="panel-heading">App Component</div>
-
-              <div className="panel-body">
-                I'm an example component!
-              </div>
+      <div className="Main">
+        <Navbar />
+        <div className="Main__layout">
+          <div className="Main__row">
+            <div className="Main__col">
+              {this.props.children}
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-8 col-md-offset-2">
-            {this.props.children}
           </div>
         </div>
       </div>

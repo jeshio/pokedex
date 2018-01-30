@@ -1,0 +1,53 @@
+@import "~styles/mixins";
+@import "~styles/variables";
+
+.pokemons_list {
+  .pokemon_row {
+    @include row();
+    position: relative;
+    height: 65px;
+    border-bottom: 1px solid #eef;
+    $left: 55px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &__avatar {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: 0;
+      left: 0;
+    }
+
+    &__name {
+      position: absolute;
+      top: 0;
+      left: $left;
+      color: darken($main-color, 10);
+      font-weight: 700;
+    }
+
+    &__main-attributes {
+      position: absolute;
+      font-size: .8em;
+      top: 20px;
+      left: $left + 2px
+    }
+
+    &__size-attributes {
+      position: absolute;
+      font-size: .8em;
+      top: 35px;
+      left: $left + 2px
+    }
+
+    &__types {
+      position: absolute;
+      bottom: 0;
+      left: $left;
+      color: #aaa;
+    }
+  }
+}
