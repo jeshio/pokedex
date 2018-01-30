@@ -4,10 +4,12 @@
 .pokemons_list {
   .pokemon_row {
     @include row();
+    $avatar-size: 100px;
     position: relative;
-    height: 65px;
+    height: $avatar-size + 30px;
     border-bottom: 1px solid #eef;
-    $left: 55px;
+    $left: $avatar-size + 5px;
+    padding: 8px 0;
 
     &:last-child {
       border-bottom: none;
@@ -15,39 +17,59 @@
 
     &__avatar {
       position: absolute;
-      width: 50px;
-      height: 50px;
-      top: 0;
+      width: $avatar-size;
+      height: $avatar-size;
+      top: 14px;
       left: 0;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+    }
+
+    &__content {
+      left: $left + 7px;
+      position: relative;
+    }
+
+    &__title {
+      line-height: 1.05em;
     }
 
     &__name {
-      position: absolute;
-      top: 0;
-      left: $left;
       color: darken($main-color, 10);
       font-weight: 700;
     }
 
     &__main-attributes {
+      font-size: .9em;
+    }
+
+    &__other-attributes {
       position: absolute;
-      font-size: .8em;
-      top: 20px;
-      left: $left + 2px
+      left: 10px;
+      font-size: .75em;
+      top: 35px;
+      line-height: .6em;
+      border-left: 2px solid #eee;
+      padding-left: 7px;
+      padding-top: 4px;
     }
 
     &__size-attributes {
       position: absolute;
-      font-size: .8em;
-      top: 35px;
-      left: $left + 2px
+      font-size: .7em;
+      bottom: 15px;
+      left: 20px;
+      color: #666;
     }
 
     &__types {
       position: absolute;
       bottom: 0;
-      left: $left;
+      left: 5px;
       color: #aaa;
+      font-size: .9em;
     }
   }
 }
