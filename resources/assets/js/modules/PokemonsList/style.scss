@@ -1,8 +1,9 @@
 @import "~styles/mixins";
 @import "~styles/variables";
+@import '~foundation-sites/scss/foundation';
 
-.pokemons_list {
-  .pokemon_row {
+.Pokemons-list {
+  .Pokemon-row {
     @include row();
     $avatar-size: 100px;
     position: relative;
@@ -70,6 +71,22 @@
       left: 5px;
       color: #aaa;
       font-size: .9em;
+    }
+  }
+
+  .Paginator {
+    text-align: center;
+    padding: 10px 0;
+
+    li {
+      list-style-type: none;
+      display: inline;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    &__previous {
+
     }
   }
 }
