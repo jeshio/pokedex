@@ -9,7 +9,7 @@ import './style.scss'
 import queryString from 'query-string'
 
 class PokemonsList extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const query = queryString.parse(this.props.router.location.search)
     if (query.size) {
       this.props.actions.setPageSize(parseInt(query.size))
