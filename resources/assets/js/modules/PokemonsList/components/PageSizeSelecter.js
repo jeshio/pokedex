@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 
@@ -14,9 +15,9 @@ const component = props =>
   </div>
 
 component.propTypes = {
-  options: React.PropTypes.array.isRequired,
-  pageSize: React.PropTypes.number.isRequired,
-  onChangePageSize: React.PropTypes.func.isRequired
+  options: PropTypes.array.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  onChangePageSize: PropTypes.func.isRequired
 }
 
 export default component

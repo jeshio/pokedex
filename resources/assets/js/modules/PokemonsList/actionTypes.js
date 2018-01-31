@@ -8,3 +8,7 @@ export const paginatorTypes = createTypes([
   'SET',
   'SET_SIZE'
 ], 'PAGE')
+
+export const filterTypes = createTypes([
+  'SET_VALUE'
+], 'FILTER')

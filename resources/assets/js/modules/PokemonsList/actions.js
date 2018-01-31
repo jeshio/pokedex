@@ -1,6 +1,6 @@
 import {asyncActionCreator, actionCreator} from 'redux-action-creator'
 import {POKEAPI_URL} from 'core/constants'
-import {loadingTypes, paginatorTypes} from './actionTypes'
+import {loadingTypes, paginatorTypes, filterTypes} from './actionTypes'
 import { NAME } from './constants'
 
 export const loadPokemons = asyncActionCreator(loadingTypes.LOAD_LIST, ({ pageNumber, pageSize }) =>
@@ -37,3 +37,8 @@ export const changePageSize = function (pageSize) {
     dispatch(loadPokemons({ pageNumber, pageSize }))
   }
 }
+
+/**
+ * Set search-filter value
+ */
+export const setFilterValue = actionCreator(filterTypes.SET_VALUE, 'filterValue')

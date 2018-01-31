@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ReactPaginate from 'react-paginate'
 import MobileDetector from 'utils/MobileDetector'
 
@@ -20,10 +21,10 @@ const component = props =>
   </div>
 
 component.propTypes = {
-  totalCount: React.PropTypes.number.isRequired,
-  pageNumber: React.PropTypes.number.isRequired,
-  pageSize: React.PropTypes.number.isRequired,
-  onChangePage: React.PropTypes.func.isRequired
+  totalCount: PropTypes.number.isRequired,
+  pageNumber: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired
 }
 
 export default component

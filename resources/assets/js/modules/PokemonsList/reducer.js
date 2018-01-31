@@ -1,12 +1,13 @@
 import { Map, List } from 'immutable'
-import { loadingTypes, paginatorTypes } from './actionTypes'
+import { loadingTypes, paginatorTypes, filterTypes } from './actionTypes'
 
 const initialState = Map({
   items: List(),
   loading: false,
   pageSize: 10,
   pageNumber: 1,
-  totalCount: 0
+  totalCount: 0,
+  filterValue: ''
 })
 
 export default (state = initialState, action) => {
@@ -25,6 +26,9 @@ export default (state = initialState, action) => {
     case paginatorTypes.SET_SIZE:
       return state
         .set('pageSize', action.payload.pageSize)
+    case filterTypes.SET_VALUE:
+      return state
+        .set('filterValue', action.payload.filterValue)
     default:
       return state
   }

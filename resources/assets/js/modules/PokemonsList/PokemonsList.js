@@ -4,15 +4,20 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import * as actions from './actions'
 import {NAME} from './constants'
-import List from './components/List'
 import './style.scss'
 import queryString from 'query-string'
+import { getFilteredItems } from './selecters'
+
+import * as Components from './components'
 
 class PokemonsList extends Component {
   componentWillMount() {
     const query = queryString.parse(this.props.router.location.search)
     if (query.size) {
       this.props.actions.setPageSize(parseInt(query.size))
+    }
+    if (query.search) {
+      this.props.actions.setFilterValue(query.search)
     }
   }
 
@@ -22,11 +27,12 @@ class PokemonsList extends Component {
    * @returns String search query
    */
   getSearchQuery(override = {}) {
-    const { pageSize, pageNumber } = this.props;
+    const { pageSize, pageNumber, filterValue } = this.props;
     return queryString.stringify({
       ...queryString.parse(this.props.router.location.search),
       ...(pageSize !== 10 ? { size: pageSize } : {}),
       ...(pageNumber > 1 ? { page: pageNumber } : {}),
+      ...(filterValue ? { search: filterValue } : {}),
       ...override
     })
   }
@@ -47,11 +53,40 @@ class PokemonsList extends Component {
     })
   }
 
+  onChangeFilter(value) {
+    this.props.actions.setFilterValue(value)
+    this.props.pushToRouter({
+      pathname: '/',
+      search: this.getSearchQuery({ search: value })
+    });
+  }
+
   render () {
     return <div className="Pokemons-list">
-      <List {...this.props}
-        onChangePage={pageNumber => this.onChangePage(pageNumber)}
-        onChangePageSize={pageSize => this.onChangePageSize(pageSize)}
+      <Components.List
+        {...this.props}
+        searchBoxComponent={
+          <Components.SearchBox
+            onChangeFilter={_.debounce((value) => this.onChangeFilter(value), 700)}
+            filterValue={this.props.filterValue}
+          />
+        }
+        pageSizeSelecterComponent={
+          <Components.PageSizeSelecter
+            pageSize={this.props.pageSize}
+            onChangePageSize={pageSize => this.onChangePageSize(pageSize)}
+            options={[10, 25, 50]}
+          />
+        }
+        paginatorComponent={
+          <Components.Paginator
+            totalCount={this.props.totalCount}
+            pageNumber={this.props.pageNumber}
+            pageSize={this.props.pageSize}
+            onChangePage={pageNumber => this.onChangePage(pageNumber)}
+          />
+        }
+        PokemonRowComponent={Components.PokemonRow}
       />
     </div>
   }
@@ -70,10 +105,11 @@ function mapStateToProps (state) {
   }
 
   return {
-    items: pokemonState.get('items'),
+    items: getFilteredItems(state),
     pageNumber: pageNumber,
     pageSize: pokemonState.get('pageSize'),
     totalCount: pokemonState.get('totalCount'),
+    filterValue: pokemonState.get('filterValue'),
     router
   }
 }
