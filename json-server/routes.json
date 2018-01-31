@@ -1,3 +1,4 @@
 {
-  "/api/v1/pokemon": "/pokemon"
+  "/api/v1/pokemon": "/pokemon",
+  "/api/v1/type": "/type"
 }

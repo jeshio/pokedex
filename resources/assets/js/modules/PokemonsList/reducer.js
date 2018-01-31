@@ -1,5 +1,5 @@
-import { Map, List } from 'immutable'
-import { loadingTypes, paginatorTypes, filterTypes } from './actionTypes'
+import { Map, List, fromJS } from 'immutable'
+import { pokemonTypes, paginatorTypes, filterTypes } from './actionTypes'
 
 const initialState = Map({
   items: List(),
@@ -7,19 +7,23 @@ const initialState = Map({
   pageSize: 10,
   pageNumber: 1,
   totalCount: 0,
-  filterValue: ''
+  filterValue: '',
+  filterTypes: List()
 })
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case loadingTypes.LOAD_LIST:
+    case pokemonTypes.LOAD_LIST:
       return state
         .set('loading', true)
-    case loadingTypes.LOAD_LIST_SUCCESS:
+    case pokemonTypes.LOAD_LIST_SUCCESS:
       return state
         .set('loading', false)
-        .set('items', List(action.response.data.objects))
+        .set('items', fromJS(action.response.data.objects))
         .set('totalCount', action.response.data.meta.total_count)
+    case pokemonTypes.LOAD_LIST_FAILURE:
+      return state
+        .set('loading', false)
     case paginatorTypes.SET:
       return state
         .set('pageNumber', action.payload.pageNumber)
@@ -29,6 +33,9 @@ export default (state = initialState, action) => {
     case filterTypes.SET_VALUE:
       return state
         .set('filterValue', action.payload.filterValue)
+    case filterTypes.SET_TYPES:
+      return state
+        .set('filterTypes', List(action.payload.filterTypes))
     default:
       return state
   }

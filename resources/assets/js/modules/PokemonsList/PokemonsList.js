@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import * as actions from './actions'
+import * as pokemonTypesActions from 'modules/PokemonTypes/actions'
+import { getItems as getPokemonTypes } from 'modules/PokemonTypes/selecters'
 import {NAME} from './constants'
 import './style.scss'
 import queryString from 'query-string'
@@ -12,13 +14,20 @@ import * as Components from './components'
 
 class PokemonsList extends Component {
   componentWillMount() {
-    const query = queryString.parse(this.props.router.location.search)
+    const query = queryString.parse(this.props.router.location.search, {arrayFormat: 'bracket'})
     if (query.size) {
       this.props.actions.setPageSize(parseInt(query.size))
     }
     if (query.search) {
       this.props.actions.setFilterValue(query.search)
     }
+    if (query.types) {
+      this.props.actions.setFilterTypes(query.types)
+    }
+  }
+
+  componentDidMount() {
+    this.props.pokemonTypesActions.loadPokemonTypes()
   }
 
   /**
@@ -27,14 +36,17 @@ class PokemonsList extends Component {
    * @returns String search query
    */
   getSearchQuery(override = {}) {
-    const { pageSize, pageNumber, filterValue } = this.props;
+    const { pageSize, pageNumber, filterValue, filterTypes } = this.props
+    const currentQuery = queryString.parse(this.props.router.location.search, {arrayFormat: 'bracket'});
+
     return queryString.stringify({
-      ...queryString.parse(this.props.router.location.search),
+      ...currentQuery,
       ...(pageSize !== 10 ? { size: pageSize } : {}),
       ...(pageNumber > 1 ? { page: pageNumber } : {}),
       ...(filterValue ? { search: filterValue } : {}),
+      ...(filterTypes.length > 0 ? { types: filterTypes } : {}),
       ...override
-    })
+    }, {arrayFormat: 'bracket'})
   }
 
   onChangePage(pageNumber) {
@@ -58,6 +70,14 @@ class PokemonsList extends Component {
     this.props.pushToRouter({
       pathname: '/',
       search: this.getSearchQuery({ search: value })
+    });
+  }
+
+  onChangeTypes(values) {
+    this.props.actions.setFilterTypes(values)
+    this.props.pushToRouter({
+      pathname: '/',
+      search: this.getSearchQuery({ types: values })
     });
   }
 
@@ -86,6 +106,13 @@ class PokemonsList extends Component {
             onChangePage={pageNumber => this.onChangePage(pageNumber)}
           />
         }
+        typeSelecterComponent={
+          <Components.TypesSelecter
+            types={this.props.types}
+            filterTypes={this.props.filterTypes}
+            onChange={(values) => this.onChangeTypes(values)}
+          />
+        }
         PokemonRowComponent={Components.PokemonRow}
       />
     </div>
@@ -110,12 +137,15 @@ function mapStateToProps (state) {
     pageSize: pokemonState.get('pageSize'),
     totalCount: pokemonState.get('totalCount'),
     filterValue: pokemonState.get('filterValue'),
+    filterTypes: pokemonState.get('filterTypes'),
+    types: getPokemonTypes(state),
     router
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch),
+  pokemonTypesActions: bindActionCreators(pokemonTypesActions, dispatch),
   pushToRouter: (url) => dispatch(push(url))
 })
 

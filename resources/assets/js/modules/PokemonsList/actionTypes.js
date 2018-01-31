@@ -1,6 +1,6 @@
 import {createTypes, async} from 'redux-action-creator'
 
-export const loadingTypes = createTypes([
+export const pokemonTypes = createTypes([
   ...async('LOAD_LIST')
 ], 'POKEMON')
 
@@ -10,5 +10,6 @@ export const paginatorTypes = createTypes([
 ], 'PAGE')
 
 export const filterTypes = createTypes([
-  'SET_VALUE'
+  'SET_VALUE',
+  'SET_TYPES'
 ], 'FILTER')

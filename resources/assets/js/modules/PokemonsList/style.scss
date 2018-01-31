@@ -82,22 +82,16 @@
 
   .PageSizeSelecter {
     @include col(2, 3);
-    @include colOff(7, 3);
+    @include colOff(3);
+  }
 
-    &__title {
-      color: #555;
-    }
+  .TypesSelecter {
+    @include col(4, 5);
+  }
 
-    &__select {
-      .Select-control {
-        border-radius: 0;
-        box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
-      }
-
-      .Select-menu-outer {
-        border-radius: 0;
-      }
-    }
+  .SearchBox {
+    @include foundation-form-text;
+    @include col(3, 4);
   }
 
   .Paginator {
@@ -114,10 +108,5 @@
     &__active {
       border-bottom: 1px solid #aaa;
     }
-  }
-
-  .SearchBox {
-    @include foundation-form-text;
-    @include col(3, 6);
   }
 }

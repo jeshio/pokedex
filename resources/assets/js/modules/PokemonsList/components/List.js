@@ -10,6 +10,8 @@ const component = props =>
     <div className="List__params">
       {props.searchBoxComponent}
 
+      {props.typeSelecterComponent}
+
       {props.pageSizeSelecterComponent}
     </div>
 
@@ -24,6 +26,7 @@ component.propTypes = {
   searchBoxComponent: PropTypes.object.isRequired,
   pageSizeSelecterComponent: PropTypes.object.isRequired,
   paginatorComponent: PropTypes.object.isRequired,
+  typeSelecterComponent: PropTypes.object.isRequired,
   PokemonRowComponent: PropTypes.func.isRequired,
   items: PropTypes.any.isRequired,
 }
