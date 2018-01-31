@@ -5,8 +5,6 @@ import Paginator from './Paginator'
 
 const component = props =>
   <div className="List">
-    <div className="List__title">Listing</div>
-
     <div className="List__params">
       {props.searchBoxComponent}
 
@@ -15,9 +13,11 @@ const component = props =>
       {props.pageSizeSelecterComponent}
     </div>
 
-    <div className="List__body">
-      {props.items.map(item => <props.PokemonRowComponent {...item} key={item.pkdx_id} />)}
-    </div>
+    <table className="List__table">
+      <tbody>
+        {props.items.map(item => <props.PokemonRowComponent {...item} key={item.pkdx_id} />)}
+      </tbody>
+    </table>
 
     {props.paginatorComponent}
   </div>

@@ -9,7 +9,10 @@ const component = props =>
     <Select
       className="PageSizeSelecter__select"
       value={props.pageSize}
-      onChange={({ value }) => props.onChangePageSize(parseInt(value))}
+      onChange={(value) => value && props.onChangePageSize(parseInt(value))}
+      searchable={false}
+      simpleValue
+      clearable={false}
       options={props.options.map(pageSize => ({ value: pageSize, label: pageSize }))}
     />
   </div>

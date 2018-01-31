@@ -3,11 +3,11 @@ import Loadable from 'react-loadable';
 import './actions';
 
 const LoadableComponent = Loadable({
-  loader: () => import('./PokemonsList'),
+  loader: () => import('./Pokemons'),
   loading: () => (<div>loading</div>),
 })
 
-export class PokemonsList extends React.Component {
+export class Pokemons extends React.Component {
   render() {
     return <LoadableComponent />;
   }

@@ -103,7 +103,7 @@ class PokemonsList extends Component {
             totalCount={this.props.totalCount}
             pageNumber={this.props.pageNumber}
             pageSize={this.props.pageSize}
-            onChangePage={pageNumber => this.onChangePage(pageNumber)}
+            onChangePage={_.debounce(pageNumber => this.onChangePage(pageNumber), 700)}
           />
         }
         typeSelecterComponent={
