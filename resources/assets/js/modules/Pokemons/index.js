@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Loadable from 'react-loadable';
+import Spinner from 'core/components/Spinner'
 import './actions';
 
 const LoadableComponent = Loadable({
   loader: () => import('./Pokemons'),
-  loading: () => (<div>loading</div>),
+  loading: () => (<Spinner />),
 })
 
 export class Pokemons extends React.Component {

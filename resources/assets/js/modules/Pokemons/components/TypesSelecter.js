@@ -12,13 +12,16 @@ const component = props =>
       value={props.filterTypes}
       onChange={(values) => props.onChange(values.map(v => v.value))}
       options={props.types.map(type => ({ value: type.name.toLowerCase(), label: type.name }))}
+      isLoading={props.loading}
+      disabled={props.loading}
     />
   </div>
 
 component.propTypes = {
   types: PropTypes.array.isRequired,
   filterTypes: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default component

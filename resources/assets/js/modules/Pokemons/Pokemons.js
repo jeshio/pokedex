@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import * as actions from './actions'
 import * as pokemonTypesActions from 'modules/PokemonTypes/actions'
-import { getItems as getPokemonTypes } from 'modules/PokemonTypes/selecters'
+import { getItems as getPokemonTypes, getLoadingStatus as getPokemonTypesLoadingStatus } from 'modules/PokemonTypes/selecters'
 import {NAME} from './constants'
 import './style.scss'
 import queryString from 'query-string'
@@ -89,6 +89,7 @@ class PokemonsList extends Component {
           <Components.SearchBox
             onChangeFilter={_.debounce((value) => this.onChangeFilter(value), 700)}
             filterValue={this.props.filterValue}
+            loading={this.props.loading}
           />
         }
         pageSizeSelecterComponent={
@@ -96,6 +97,7 @@ class PokemonsList extends Component {
             pageSize={this.props.pageSize}
             onChangePageSize={pageSize => this.onChangePageSize(pageSize)}
             options={[10, 25, 50]}
+            loading={this.props.loading}
           />
         }
         paginatorComponent={
@@ -104,6 +106,7 @@ class PokemonsList extends Component {
             pageNumber={this.props.pageNumber}
             pageSize={this.props.pageSize}
             onChangePage={_.debounce(pageNumber => this.onChangePage(pageNumber), 700)}
+            loading={this.props.loading}
           />
         }
         typeSelecterComponent={
@@ -111,6 +114,7 @@ class PokemonsList extends Component {
             types={this.props.types}
             filterTypes={this.props.filterTypes}
             onChange={(values) => this.onChangeTypes(values)}
+            loading={this.props.loadingTypesStatus}
           />
         }
         PokemonRowComponent={Components.PokemonRow}
@@ -132,6 +136,7 @@ function mapStateToProps (state) {
   }
 
   return {
+    loading: pokemonState.get('loading'),
     items: getFilteredItems(state),
     pageNumber: pageNumber,
     pageSize: pokemonState.get('pageSize'),
@@ -139,6 +144,7 @@ function mapStateToProps (state) {
     filterValue: pokemonState.get('filterValue'),
     filterTypes: pokemonState.get('filterTypes'),
     types: getPokemonTypes(state),
+    loadingTypesStatus: getPokemonTypesLoadingStatus(state),
     router
   }
 }

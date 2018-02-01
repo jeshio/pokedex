@@ -19,7 +19,7 @@ class component extends React.Component {
     return (
       <div className="SearchBox">
         <label className="SearchBox__title">Search</label>
-        <input type="text" ref="filterInput" placeholder="Search..." onChange={(e) => props.onChangeFilter(e.target.value)} />
+        <input type="text" ref="filterInput" placeholder="Search..." onChange={(e) => props.onChangeFilter(e.target.value)} disabled={props.loading} />
       </div>
     )
   }
@@ -27,7 +27,8 @@ class component extends React.Component {
 
 component.propTypes = {
   filterValue: PropTypes.string.isRequired,
-  onChangeFilter: PropTypes.func.isRequired
+  onChangeFilter: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default component

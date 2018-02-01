@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate'
 import MobileDetector from 'utils/MobileDetector'
 
 const component = props =>
-  <div>
+  <div className={`${props.pageSize >= props.totalCount ? 'hide' : ''}`}>
     <ReactPaginate
       pageCount={Math.ceil(props.totalCount/props.pageSize)}
       pageRangeDisplayed={1}

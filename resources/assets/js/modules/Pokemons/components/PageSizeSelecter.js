@@ -14,13 +14,16 @@ const component = props =>
       simpleValue
       clearable={false}
       options={props.options.map(pageSize => ({ value: pageSize, label: pageSize }))}
+      isLoading={props.loading}
+      disabled={props.loading}
     />
   </div>
 
 component.propTypes = {
   options: PropTypes.array.isRequired,
   pageSize: PropTypes.number.isRequired,
-  onChangePageSize: PropTypes.func.isRequired
+  onChangePageSize: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default component
