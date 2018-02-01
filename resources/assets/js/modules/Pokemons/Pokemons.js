@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 import * as actions from './actions'
 import * as pokemonTypesActions from 'modules/PokemonTypes/actions'
 import { getItems as getPokemonTypes, getLoadingStatus as getPokemonTypesLoadingStatus } from 'modules/PokemonTypes/selecters'
-import {NAME} from './constants'
+import { NAME, PAGE_SELECTER_OPTIONS } from './constants'
 import './style.scss'
 import queryString from 'query-string'
 import { getFilteredItems } from './selecters'
@@ -96,7 +96,7 @@ class PokemonsList extends Component {
           <Components.PageSizeSelecter
             pageSize={this.props.pageSize}
             onChangePageSize={pageSize => this.onChangePageSize(pageSize)}
-            options={[10, 25, 50]}
+            options={PAGE_SELECTER_OPTIONS}
             loading={this.props.loading}
           />
         }

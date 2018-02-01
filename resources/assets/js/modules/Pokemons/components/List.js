@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Spinner from 'core/components/Spinner'
-import * as Components from './index'
+import toJS from 'utils/toJS'
 
 const component = props =>
   <div className="List">
@@ -40,5 +40,7 @@ component.propTypes = {
   AttributesChartComponent: PropTypes.func.isRequired,
   items: PropTypes.any.isRequired,
 }
+
+export const ListHOC = toJS(component)
 
 export default component

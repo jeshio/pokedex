@@ -10,10 +10,8 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.17",
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "babel-preset-react": "^6.23.0",
-        "bootstrap-sass": "^3.3.7",
         "browser-sync": "^2.23.6",
         "browser-sync-webpack-plugin": "^1.2.0",
         "cross-env": "^5.1",
@@ -23,31 +21,34 @@
         "eslint-plugin-node": "^5.2.1",
         "eslint-plugin-promise": "^3.6.0",
         "eslint-plugin-standard": "^3.0.1",
+        "laravel-mix": "^2.0"
+
+    },
+    "dependencies": {
+        "axios": "^0.17",
+        "bootstrap-sass": "^3.3.7",
+        "foundation-sites": "^6.4.4-rc1",
         "immutable": "^3.8.2",
-        "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
+        "halogenium": "^2.2.3",
+        "mobile-detect": "^1.4.1",
         "prop-types": "^15.6.0",
         "query-string": "^5.0.1",
         "react": "^15.4.2",
         "react-dom": "^15.4.2",
+        "react-loader": "^2.4.2",
         "react-loadable": "^5.3.1",
         "react-paginate": "^5.0.0",
         "react-redux": "^5.0.6",
         "react-router": "^4.2.0",
         "react-router-redux": "^5.0.0-alpha.9",
         "react-select": "^1.2.1",
+        "recharts": "^1.0.0-beta.10",
         "redux": "^3.7.2",
         "redux-action-creator": "^2.2.0",
         "redux-immutable": "^4.0.0",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.2.0",
         "reselect": "^3.0.1"
-    },
-    "dependencies": {
-        "foundation-sites": "^6.4.4-rc1",
-        "halogenium": "^2.2.3",
-        "mobile-detect": "^1.4.1",
-        "react-loader": "^2.4.2",
-        "recharts": "^1.0.0-beta.10"
     }
 }
