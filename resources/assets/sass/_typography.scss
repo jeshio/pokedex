@@ -1,0 +1,35 @@
+@import "variables";
+
+h1, h2, h3, h4, h5, h6 {
+  .title {
+    color: $titles-color;
+  }
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($link-color, 15);
+  }
+}
+
+.loader {
+  text-align: center;
+  margin: 50px 0;
+}
+
+// fixes for react-select
+.Select-control {
+  border-radius: 0 !important;;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+}
+
+.Select-menu-outer {
+  border-radius: 0 !important;
+}
+
+.hide {
+  display: none;
+}

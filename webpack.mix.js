@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,27 @@ let mix = require('laravel-mix');
  |
  */
 
+// browser syncr for reloading in dev watch
+mix.browserSync(process.env.APP_URL)
+
+// chunks compile path
+mix.webpackConfig({
+  output: {
+    chunkFilename: 'js/chunks/[name].js'
+  }
+})
+
+// aliases
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      'styles': path.resolve('./resources/assets/sass/'),
+      'core': path.resolve('./resources/assets/js/modules/Core'),
+      'modules': path.resolve('./resources/assets/js/modules'),
+      'utils': path.resolve('./resources/assets/js/utils')
+    }
+  }
+})
+
 mix.react('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+  .sass('resources/assets/sass/app.scss', 'public/css')

@@ -1,0 +1,42 @@
+@import "~styles/mixins";
+@import "~styles/variables";
+@import '~foundation-sites/scss/util/mixins';
+
+.Main {
+  &__layout {
+    @include layout;
+  }
+
+  &__row {
+    @include row;
+  }
+
+  &__col {
+    @include col;
+  }
+
+  .Navbar {
+    position: relative;
+    background: $navbar-background;
+    color: #fff;
+    height: $navbar-height;
+    box-shadow: 0 0 2px 0px #999;
+    margin-bottom: 5px;
+
+    &__navbar-content {
+      @include vertical-center;
+    }
+
+    &__layout {
+      @extend .Main__layout;
+    }
+
+    &__row {
+      @extend .Main__row;
+    }
+
+    &__col {
+      @extend .Main__col;
+    }
+  }
+}

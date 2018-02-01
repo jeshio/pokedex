@@ -1,0 +1,25 @@
+// настройки
+// https://foundation.zurb.com/sites/docs/button.html#sass-variables
+
+@import '../variables';
+@import '~foundation-sites/scss/foundation';
+
+@mixin btn() {
+  @include button();
+  min-width: 110px;
+  margin: 0 10px;
+}
+
+@mixin fullBtn() {
+  @include button(true);
+}
+
+@mixin btn-gray() {
+  background: #ddd;
+  color: #11422e;
+  border: 1px solid #ccc;
+
+  &:hover {
+    background: #cacaca;
+  }
+}
