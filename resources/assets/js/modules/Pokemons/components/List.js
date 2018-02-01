@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Spinner from 'core/components/Spinner'
+import * as Components from './index'
 
 const component = props =>
   <div className="List">
@@ -16,7 +17,13 @@ const component = props =>
 
     <table className={`List__table ${props.loading ? 'hide' : ''}`}>
       <tbody>
-        {props.items.map(item => <props.PokemonRowComponent {...item} key={item.pkdx_id} />)}
+        {props.items.map(item =>
+          <props.PokemonRowComponent
+            {...item}
+            AttributesChartComponent={props.AttributesChartComponent}
+            key={item.pkdx_id}
+          />
+        )}
       </tbody>
     </table>
 
@@ -30,6 +37,7 @@ component.propTypes = {
   paginatorComponent: PropTypes.object.isRequired,
   typeSelecterComponent: PropTypes.object.isRequired,
   PokemonRowComponent: PropTypes.func.isRequired,
+  AttributesChartComponent: PropTypes.func.isRequired,
   items: PropTypes.any.isRequired,
 }
 

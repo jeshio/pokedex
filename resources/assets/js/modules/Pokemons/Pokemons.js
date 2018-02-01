@@ -118,6 +118,7 @@ class PokemonsList extends Component {
           />
         }
         PokemonRowComponent={Components.PokemonRow}
+        AttributesChartComponent={Components.AttributesChart}
       />
     </div>
   }
