@@ -39,6 +39,7 @@ resources/assets
     |components
       ... <- reusable mixins
     ... <- main sass
+json-server <- server for mocking (default in dev)
 ```
 
 ## The task
