@@ -1,0 +1,114 @@
+@import "~styles/mixins";
+@import "~styles/variables";
+@import "~styles/components/tables";
+@import '~foundation-sites/scss/foundation';
+
+.Pokemons-list {
+  .List {
+    &__params {
+      @include row;
+      margin-bottom: 10px;
+    }
+
+    &__table {
+      @include default-table
+
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .Pokemon-row {
+    $avatar-size: 100px;
+    position: relative;
+    height: $avatar-size + 30px;
+    border-bottom: 1px solid #eef;
+    padding: 8px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &__avatar {
+      width: $avatar-size;
+      height: $avatar-size;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      margin: 0 5px;
+    }
+
+    &__name {
+      color: darken($main-color, 10);
+      font-weight: 700;
+    }
+
+    &__size-attributes {
+      font-size: .7em;
+      color: #666;
+      text-align: center;
+    }
+
+    &__abilities {
+      color: #3180c5;
+    }
+
+    &__types {
+      color: #aaa;
+      font-size: .9em;
+    }
+
+    &__md {
+      &.-up {
+        @include breakpoint(small down) {
+          display: none;
+        }
+      }
+      &.-down {
+        @include breakpoint(medium up) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .PageSizeSelecter {
+    @include col(2, 3);
+    @include colOff(3);
+  }
+
+  .TypesSelecter {
+    @include col(4, 5);
+  }
+
+  .SearchBox {
+    @include foundation-form-text;
+    @include col(3, 4);
+  }
+
+  .Paginator {
+    text-align: center;
+    padding: 10px 0;
+
+    li {
+      list-style-type: none;
+      display: inline;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    &__active {
+      border-bottom: 1px solid #aaa;
+    }
+  }
+
+  .AttributesChart {
+    //transform: rotate(90deg);
+
+    .recharts-text {
+
+    }
+  }
+}
