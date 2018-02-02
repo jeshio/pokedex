@@ -2,9 +2,16 @@ import {asyncActionCreator, actionCreator} from 'redux-action-creator'
 import {POKEAPI_URL} from 'core/constants'
 import {pokemonTypes, paginatorTypes, filterTypes} from './actionTypes'
 import { NAME } from './constants'
+import axios from 'axios'
 
-export const loadPokemons = asyncActionCreator(pokemonTypes.LOAD_LIST, ({ pageNumber, pageSize }) =>
-  axios.get(`${POKEAPI_URL}/api/v1/pokemon?limit=${pageSize}&offset=${pageSize * (pageNumber - 1)}`))
+export const loadPokemons = asyncActionCreator(pokemonTypes.LOAD_LIST, {
+  action: (payload, dispatch, getState) => {
+    const state = getState().get(NAME)
+    const pageSize = state.get('pageSize')
+    const pageNumber = state.get('pageNumber')
+    return axios.get(`${POKEAPI_URL}/api/v1/pokemon?limit=${pageSize}&offset=${pageSize * (pageNumber - 1)}`)
+  }
+})
 
 /**
  * Set number page
@@ -13,12 +20,9 @@ const setPage = actionCreator(paginatorTypes.SET, 'pageNumber')
 
 // update page number and refresh data
 export const changePage = function (pageNumber) {
-  return (dispatch, getState) => {
-    const state = getState().get(NAME)
-    const pageSize = state.get('pageSize')
-
-    dispatch(setPage(pageNumber))
-    dispatch(loadPokemons({ pageNumber, pageSize }))
+  return async (dispatch) => {
+    await dispatch(setPage(pageNumber))
+    await dispatch(loadPokemons())
   }
 }
 
@@ -29,12 +33,12 @@ export const setPageSize = actionCreator(paginatorTypes.SET_SIZE, 'pageSize')
 
 // update page size and refresh data
 export const changePageSize = function (pageSize) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const state = getState().get(NAME)
     const pageNumber = state.get('pageNumber')
 
-    dispatch(setPageSize(pageSize))
-    dispatch(loadPokemons({ pageNumber, pageSize }))
+    await dispatch(setPageSize(pageSize))
+    await dispatch(loadPokemons({ pageNumber, pageSize }))
   }
 }
 

@@ -1,12 +1,8 @@
-import { Map, List } from 'immutable'
+import { Map, List, fromJS } from 'immutable'
 import { typesOfPokemonsTypes } from './actionTypes'
+import initialState from './initialState'
 
-const initialState = Map({
-  items: List(),
-  loading: false
-})
-
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case typesOfPokemonsTypes.LOAD_LIST:
       return state
@@ -14,7 +10,7 @@ export default (state = initialState, action) => {
     case typesOfPokemonsTypes.LOAD_LIST_SUCCESS:
       return state
         .set('loading', false)
-        .set('items', List(action.response.data.objects))
+        .set('items', fromJS(action.response.data.objects))
     case typesOfPokemonsTypes.LOAD_LIST_FAILURE:
       return state
         .set('loading', false)

@@ -1,17 +1,8 @@
 import { Map, List, fromJS } from 'immutable'
 import { pokemonTypes, paginatorTypes, filterTypes } from './actionTypes'
+import initialState from './initialState'
 
-const initialState = Map({
-  items: List(),
-  loading: false,
-  pageSize: 10,
-  pageNumber: 1,
-  totalCount: 0,
-  filterValue: '',
-  filterTypes: List()
-})
-
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case pokemonTypes.LOAD_LIST:
       return state

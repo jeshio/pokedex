@@ -7,7 +7,7 @@ import { Iterable } from 'immutable'
  * @param WrappedComponent
  * @returns {function(*=)}
  */
-export const toJS = WrappedComponent => wrappedComponentProps => {
+export default WrappedComponent => wrappedComponentProps => {
   const KEY = 0
   const VALUE = 1
 

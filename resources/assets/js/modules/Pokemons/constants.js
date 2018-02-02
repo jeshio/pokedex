@@ -7,3 +7,5 @@ export const ATTRIBUTE_COLORS = {
   defense: '#88e',
   sp_def: '#4141da'
 }
+// page sizes for selecting
+export const PAGE_SELECTER_OPTIONS = [10, 25, 50]
